@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>clock</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            background: url(static/background.jpg);
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-position: center;
+        }
+
+        .clock {
+            text-align: center;
+            height: 100vh;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 2em;
+        }
+
+        .timer {
+            display: flex;
+            flex-direction: row;
+            background-color: black;
+            color: seagreen;
+        }
+
+        .hours {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            margin: 5px;
+            border: 2px solid white;
+            padding: 10px;
+        }
+
+        .hours span {
+            background-color: aliceblue;
+            padding: 5px;
+            color: red;
+        }
+
+        .hours div {
+            text-transform: uppercase;
+        }
+
+        .dt {
+            display: flex;
+            flex-direction: row;
+            background-color: black;
+            color: seagreen;
+        }
+
+        .date {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            margin: 5px;
+            border: 2px solid white;
+            padding: 10px;
+        }
+
+        .date span {
+            background-color: aliceblue;
+            padding: 5px;
+            color: red;
+        }
+
+        .date div {
+            text-transform: uppercase;
+        }
+
+        .clock h3 {
+            text-transform: uppercase;
+            text-decoration: underline;
+            font-style: italic;
+            text-align: center;
+            text-shadow: 5px 5px 5px seashell;
+        }
+
+        #ampm {
+            text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 5px;
+            color: rgb(182, 44, 44);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="clock">
+        <h3>digital clock</h3>
+        <div class="timer">
+            <div class="hours">
+                <span id="hours">00</span>
+                <div>hours</div>
+            </div>
+            <div class="hours">
+                <span id="minutes">00</span>
+                <div>minutes</div>
+            </div>
+            <div class="hours">
+                <span id="seconds">00</span>
+                <div>seconds</div>
+
+            </div>
+            <div id="ampm">AM</div>
+        </div>
+        <div class="dt">
+            <div class="date">
+                <span id="date">00</span>
+                <div>date</div>
+            </div>
+            <div class="date">
+                <span id="month">00</span>
+                <div>month</div>
+            </div>
+            <div class="date">
+                <span id="year">0000</span>
+                <div>year</div>
+            </div>
+        </div>
+    </div>
+    <script>
+        function clock() {
+            let hourEl = document.getElementById("hours");
+            let minutesEl = document.getElementById("minutes");
+            let secondsEl = document.getElementById("seconds");
+            let ampmEl = document.getElementById("ampm");
+            let dateEl = document.getElementById("date");
+            let monthEl = document.getElementById("month");
+            let yearEl = document.getElementById("year");
+            var h = new Date().getHours();
+            var m = new Date().getMinutes();
+            var s = new Date().getSeconds();
+            var d = new Date().getDate();
+            var mon = new Date().getMonth() + 1;
+            var y = new Date().getFullYear();
+            let ampm = "AM"
+            if (h > 12) {
+                h = h - 12;
+                ampm = "PM"
+            }
+            if (h == 00){
+                h=12;
+            }
+            s = s < 10 ? "0" + s : s
+            h = h < 10 ? "0" + h : h
+            m = m < 10 ? "0" + m : m
+            d = d < 10 ? "0" + d : d
+            mon = mon < 10 ? "0" + mon : mon
+
+            hourEl.innerText = h;
+            minutesEl.innerText = m;
+            secondsEl.innerText = s;
+            dateEl.innerText = d;
+            monthEl.innerText = mon;
+            yearEl.innerText = y;
+            ampmEl.innerText = ampm;
+        }
+        clock()
+        setInterval(clock, 1000);
+    </script>
+</body>
+
+</html>
